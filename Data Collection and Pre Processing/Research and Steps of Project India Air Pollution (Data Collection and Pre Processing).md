@@ -30,8 +30,8 @@ The ZIP contains:
 
 | File | Purpose |
 |---|---|
-| `IndiaAirPollution_2017_25.xls` | Raw input dataset |
-| `IndiaAirPollution_Preprocessed.xls` | Preprocessed/normalized dataset included with the project |
+| `IndiaAirPollution_2017_25.csv` | Raw input dataset |
+| `IndiaAirPollution_Preprocessed.csv` | Preprocessed/normalized dataset included with the project |
 | `Project_AIML7th Sem.ipynb` | Main Jupyter Notebook containing the complete workflow |
 
 ### Important file-format note
