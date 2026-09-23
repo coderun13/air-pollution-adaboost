@@ -21,8 +21,8 @@ The ZIP contains:
 ```text
 7thSemProjectAIML/
 │
-├── IndiaAirPollution_2017_25.xls
-├── IndiaAirPollution_Preprocessed.xls
+├── IndiaAirPollution_2017_25.csv
+├── IndiaAirPollution_Preprocessed.csv
 └── Project_AIML7th Sem.ipynb
 ```
 
@@ -58,7 +58,7 @@ IndiaAirPollution_Preprocessed.csv
 For example:
 
 ```python
-file_path = "IndiaAirPollution_2017_25.xls"
+file_path = "IndiaAirPollution_2017_25.csv"
 df = pd.read_csv(file_path)
 ```
 
