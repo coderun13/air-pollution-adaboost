@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+
+  /* Unique Light Palette: Off-White, Crisp White, Soft Pink & Deep Ink */
+  --color-primary: #DB2777;
+  --color-primary-light: #F472B6;
+  --color-primary-dark: #BE185D;
+
+  --color-secondary: #0D9488;
+  --color-surface: #FFFFFF;
+  --color-surface-light: #FFF1F7;
+  --color-surface-dark: #F4F1EE;
+
+  --color-background: #FAF8F6;
+  --color-border: #E8E1DC;
+  --color-border-light: #F5D0E2;
+
+  --color-text-primary: #18181B;
+  --color-text-secondary: #52525B;
+  --color-text-muted: #71717A;
+
+  --color-status-good: #16A34A;
+  --color-status-moderate: #D97706;
+  --color-status-poor: #EA580C;
+  --color-status-veryPoor: #DC2626;
+  --color-status-severe: #9333EA;
+
+  --radius-card: 16px;
+  --radius-panel: 20px;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+  }
+}
+
+@layer components {
+  .surface-card {
+    @apply rounded-2xl border border-border bg-surface shadow-sm transition-shadow hover:shadow-md;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-dark disabled:opacity-50;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-border-light bg-surface-light px-5 py-2.5 text-sm font-semibold text-primary-dark transition hover:bg-pink-100/70;
+  }
+
+  .field-input {
+    @apply w-full rounded-xl border border-border bg-surface px-3 py-2 text-sm text-text-primary placeholder-text-muted focus:border-primary focus:outline-none;
+  }
+
+  .field-label {
+    @apply mb-1.5 block text-xs font-semibold uppercase tracking-wider text-text-secondary;
+  }
+}
