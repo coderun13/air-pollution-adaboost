@@ -1,0 +1,8 @@
+city,stations,valid_stations,mean,median,min,max
+Howrah,4,4,44.75,45.5,34.0,54.0
+Barrackpore,1,1,42.0,42.0,42.0,42.0
+Siliguri,1,1,40.0,40.0,40.0,40.0
+Durgapur,3,3,38.0,35.0,29.0,50.0
+Asansol,4,4,34.5,35.0,21.0,47.0
+Kolkata,7,7,31.0,32.0,21.0,40.0
+Haldia,1,1,22.0,22.0,22.0,22.0

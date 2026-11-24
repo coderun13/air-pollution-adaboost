@@ -1,0 +1,200 @@
+{
+  "DecisionTree_Baseline": {
+    "metrics": {
+      "model": "DecisionTree_Baseline",
+      "accuracy": 0.996,
+      "precision_macro": 0.7886,
+      "recall_macro": 0.7989,
+      "macro_f1": 0.7937,
+      "weighted_f1": 0.9955
+    },
+    "confusion_matrix_labels": [
+      "Satisfactory",
+      "Moderate",
+      "Poor",
+      "Very Poor",
+      "Severe"
+    ],
+    "confusion_matrix": [
+      [
+        0,
+        8,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        454,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        527,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        1541,
+        1
+      ],
+      [
+        0,
+        11,
+        8,
+        0,
+        4759
+      ]
+    ],
+    "classification_report": {
+      "Satisfactory": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 8.0
+      },
+      "Moderate": {
+        "precision": 0.959830866807611,
+        "recall": 1.0,
+        "f1-score": 0.9795037756202805,
+        "support": 454.0
+      },
+      "Poor": {
+        "precision": 0.9832089552238806,
+        "recall": 1.0,
+        "f1-score": 0.9915333960489181,
+        "support": 527.0
+      },
+      "Very Poor": {
+        "precision": 1.0,
+        "recall": 0.998703823720026,
+        "f1-score": 0.9993514915693904,
+        "support": 1543.0
+      },
+      "Severe": {
+        "precision": 0.9997899159663866,
+        "recall": 0.9960234407701968,
+        "f1-score": 0.9979031243447264,
+        "support": 4778.0
+      },
+      "accuracy": 0.9960328317373461,
+      "macro avg": {
+        "precision": 0.7885659475995757,
+        "recall": 0.7989454528980445,
+        "f1-score": 0.7936583575166631,
+        "support": 7310.0
+      },
+      "weighted avg": {
+        "precision": 0.9950630029303742,
+        "recall": 0.9960328317373461,
+        "f1-score": 0.9955148144268205,
+        "support": 7310.0
+      }
+    }
+  },
+  "AdaBoost_Primary": {
+    "metrics": {
+      "model": "AdaBoost_Primary",
+      "accuracy": 0.9988,
+      "precision_macro": 0.9965,
+      "recall_macro": 0.8747,
+      "macro_f1": 0.9072,
+      "weighted_f1": 0.9986
+    },
+    "confusion_matrix_labels": [
+      "Satisfactory",
+      "Moderate",
+      "Poor",
+      "Very Poor",
+      "Severe"
+    ],
+    "confusion_matrix": [
+      [
+        3,
+        5,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        454,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        527,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        1542,
+        0
+      ],
+      [
+        0,
+        1,
+        1,
+        1,
+        4775
+      ]
+    ],
+    "classification_report": {
+      "Satisfactory": {
+        "precision": 1.0,
+        "recall": 0.375,
+        "f1-score": 0.5454545454545454,
+        "support": 8.0
+      },
+      "Moderate": {
+        "precision": 0.9869565217391304,
+        "recall": 1.0,
+        "f1-score": 0.9934354485776805,
+        "support": 454.0
+      },
+      "Poor": {
+        "precision": 0.996219281663516,
+        "recall": 1.0,
+        "f1-score": 0.9981060606060606,
+        "support": 527.0
+      },
+      "Very Poor": {
+        "precision": 0.9993519118600129,
+        "recall": 0.9993519118600129,
+        "f1-score": 0.9993519118600129,
+        "support": 1543.0
+      },
+      "Severe": {
+        "precision": 1.0,
+        "recall": 0.9993721222268732,
+        "f1-score": 0.9996859625248613,
+        "support": 4778.0
+      },
+      "accuracy": 0.9987688098495212,
+      "macro avg": {
+        "precision": 0.9965055430525318,
+        "recall": 0.8747448068173773,
+        "f1-score": 0.9072067858046321,
+        "support": 7310.0
+      },
+      "weighted avg": {
+        "precision": 0.9987805502470914,
+        "recall": 0.9987688098495212,
+        "f1-score": 0.9986162452669062,
+        "support": 7310.0
+      }
+    }
+  }
+}

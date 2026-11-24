@@ -1,0 +1,80 @@
+{
+  "rows": 36530,
+  "date_min": "2015-01-01",
+  "date_max": "2024-12-31",
+  "cities": [
+    "Bangalore",
+    "Chennai",
+    "Delhi",
+    "Kolkata",
+    "Mumbai"
+  ],
+  "stations": [
+    "Station_B1",
+    "Station_B2",
+    "Station_C1",
+    "Station_C2",
+    "Station_D1",
+    "Station_D2",
+    "Station_K1",
+    "Station_K2",
+    "Station_M1",
+    "Station_M2"
+  ],
+  "rows_per_station": {
+    "Station_B1": 3653,
+    "Station_B2": 3653,
+    "Station_C1": 3653,
+    "Station_C2": 3653,
+    "Station_D1": 3653,
+    "Station_D2": 3653,
+    "Station_K1": 3653,
+    "Station_K2": 3653,
+    "Station_M1": 3653,
+    "Station_M2": 3653
+  },
+  "rows_per_year": {
+    "2015": 3650,
+    "2016": 3660,
+    "2017": 3650,
+    "2018": 3650,
+    "2019": 3650,
+    "2020": 3660,
+    "2021": 3650,
+    "2022": 3650,
+    "2023": 3650,
+    "2024": 3660
+  },
+  "target_distribution": [
+    {
+      "aqi_category": "Good",
+      "count": 1,
+      "pct": 0.0027
+    },
+    {
+      "aqi_category": "Satisfactory",
+      "count": 22,
+      "pct": 0.0602
+    },
+    {
+      "aqi_category": "Moderate",
+      "count": 2217,
+      "pct": 6.069
+    },
+    {
+      "aqi_category": "Poor",
+      "count": 2687,
+      "pct": 7.3556
+    },
+    {
+      "aqi_category": "Very Poor",
+      "count": 7748,
+      "pct": 21.21
+    },
+    {
+      "aqi_category": "Severe",
+      "count": 23855,
+      "pct": 65.3025
+    }
+  ]
+}

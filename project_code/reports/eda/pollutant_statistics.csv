@@ -1,0 +1,8 @@
+pollutant,column,unit_note,n_valid,n_missing,missing_pct,mean,std,min,q25,median,q75,max
+PM2.5,PM2.5_avg,ug/m3 (CPCB standard),21,1,4.55,35.81,10.33,21.0,28.0,39.0,42.0,54.0
+PM10,PM10_avg,ug/m3 (CPCB standard),21,1,4.55,45.71,11.23,25.0,37.0,44.0,54.0,67.0
+NO2,NO2_avg,ug/m3 (CPCB standard),20,2,9.09,28.2,19.82,6.0,13.25,23.5,38.75,84.0
+SO2,SO2_avg,ug/m3 (CPCB standard),21,1,4.55,11.29,4.55,4.0,8.0,11.0,14.0,20.0
+NH3,NH3_avg,ug/m3 (CPCB standard),20,2,9.09,8.2,4.43,1.0,5.0,8.0,10.25,19.0
+OZONE,OZONE_avg,ug/m3 (CPCB standard),22,0,0.0,23.18,11.96,9.0,14.75,20.0,28.0,58.0
+CO,CO_avg,Check API metadata (often mg/m3 in CPCB vs ug/m3 in feed),22,0,0.0,37.5,16.77,21.0,24.25,30.5,51.25,71.0
