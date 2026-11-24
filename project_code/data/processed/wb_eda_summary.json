@@ -1,0 +1,177 @@
+{
+  "pollutant_summary": [
+    {
+      "pollutant_avg": "PM2.5_avg",
+      "valid_stations": 21,
+      "missing_stations": 1,
+      "mean": 35.81,
+      "median": 39.0,
+      "min": 21.0,
+      "max": 54.0
+    },
+    {
+      "pollutant_avg": "PM10_avg",
+      "valid_stations": 21,
+      "missing_stations": 1,
+      "mean": 45.71,
+      "median": 44.0,
+      "min": 25.0,
+      "max": 67.0
+    },
+    {
+      "pollutant_avg": "NO2_avg",
+      "valid_stations": 20,
+      "missing_stations": 2,
+      "mean": 28.2,
+      "median": 23.5,
+      "min": 6.0,
+      "max": 84.0
+    },
+    {
+      "pollutant_avg": "SO2_avg",
+      "valid_stations": 21,
+      "missing_stations": 1,
+      "mean": 11.29,
+      "median": 11.0,
+      "min": 4.0,
+      "max": 20.0
+    },
+    {
+      "pollutant_avg": "NH3_avg",
+      "valid_stations": 20,
+      "missing_stations": 2,
+      "mean": 8.2,
+      "median": 8.0,
+      "min": 1.0,
+      "max": 19.0
+    },
+    {
+      "pollutant_avg": "OZONE_avg",
+      "valid_stations": 22,
+      "missing_stations": 0,
+      "mean": 23.18,
+      "median": 20.0,
+      "min": 9.0,
+      "max": 58.0
+    },
+    {
+      "pollutant_avg": "CO_avg",
+      "valid_stations": 22,
+      "missing_stations": 0,
+      "mean": 37.5,
+      "median": 30.5,
+      "min": 21.0,
+      "max": 71.0
+    }
+  ],
+  "city_summary": [
+    {
+      "city": "Howrah",
+      "stations": 5,
+      "avg_valid_pollutants": 6.0,
+      "pm25_mean": 44.75,
+      "pm10_mean": 48.75,
+      "no2_mean": 33.5,
+      "so2_mean": 11.0,
+      "ozone_mean": 27.4,
+      "co_mean": 38.6
+    },
+    {
+      "city": "Barrackpore",
+      "stations": 1,
+      "avg_valid_pollutants": 7.0,
+      "pm25_mean": 42.0,
+      "pm10_mean": 55.0,
+      "no2_mean": 14.0,
+      "so2_mean": 19.0,
+      "ozone_mean": 44.0,
+      "co_mean": 71.0
+    },
+    {
+      "city": "Siliguri",
+      "stations": 1,
+      "avg_valid_pollutants": 7.0,
+      "pm25_mean": 40.0,
+      "pm10_mean": 67.0,
+      "no2_mean": 64.0,
+      "so2_mean": 13.0,
+      "ozone_mean": 13.0,
+      "co_mean": 21.0
+    },
+    {
+      "city": "Durgapur",
+      "stations": 3,
+      "avg_valid_pollutants": 7.0,
+      "pm25_mean": 38.0,
+      "pm10_mean": 49.33,
+      "no2_mean": 38.67,
+      "so2_mean": 14.67,
+      "ozone_mean": 25.67,
+      "co_mean": 32.33
+    },
+    {
+      "city": "Asansol",
+      "stations": 4,
+      "avg_valid_pollutants": 7.0,
+      "pm25_mean": 34.5,
+      "pm10_mean": 40.5,
+      "no2_mean": 16.25,
+      "so2_mean": 12.0,
+      "ozone_mean": 15.0,
+      "co_mean": 42.25
+    },
+    {
+      "city": "Kolkata",
+      "stations": 7,
+      "avg_valid_pollutants": 6.71,
+      "pm25_mean": 31.0,
+      "pm10_mean": 42.29,
+      "no2_mean": 27.5,
+      "so2_mean": 8.14,
+      "ozone_mean": 23.14,
+      "co_mean": 35.57
+    },
+    {
+      "city": "Haldia",
+      "stations": 1,
+      "avg_valid_pollutants": 7.0,
+      "pm25_mean": 22.0,
+      "pm10_mean": 37.0,
+      "no2_mean": 6.0,
+      "so2_mean": 12.0,
+      "ozone_mean": 17.0,
+      "co_mean": 25.0
+    }
+  ],
+  "incomplete_stations": [
+    {
+      "city": "Howrah",
+      "station": "Ghusuri, Howrah - WBPCB",
+      "valid_avg_count": 2,
+      "missing_pollutants": [
+        "PM2.5",
+        "PM10",
+        "NO2",
+        "SO2",
+        "NH3"
+      ],
+      "pm25_avg": null,
+      "pm10_avg": null
+    },
+    {
+      "city": "Kolkata",
+      "station": "Victoria, Kolkata - WBPCB",
+      "valid_avg_count": 5,
+      "missing_pollutants": [
+        "NO2",
+        "NH3"
+      ],
+      "pm25_avg": 40.0,
+      "pm10_avg": 59.0
+    }
+  ],
+  "charts_saved": [
+    "D:\\snehal\\project\\air-quality-api-test\\reports\\figures\\wb_station_pm25_ranking.png",
+    "D:\\snehal\\project\\air-quality-api-test\\reports\\figures\\wb_city_pm_comparison.png"
+  ]
+}

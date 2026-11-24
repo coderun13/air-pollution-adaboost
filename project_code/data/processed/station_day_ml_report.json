@@ -1,0 +1,27 @@
+{
+  "source_file": "D:\\snehal\\project\\air-quality-api-test\\data\\external\\kaggle_india_aqi\\station_day.csv",
+  "initial_rows": 36530,
+  "exact_duplicates_removed": 0,
+  "logical_station_date_duplicates_removed": 0,
+  "cpcb_sufficient_rows_before_feature_dropna": 36530,
+  "final_complete_training_rows": 36530,
+  "features": [
+    "PM2_5",
+    "PM10",
+    "NO2",
+    "SO2",
+    "CO",
+    "O3",
+    "NH3"
+  ],
+  "target": "aqi_category",
+  "class_distribution": {
+    "Good": 1,
+    "Satisfactory": 22,
+    "Moderate": 2217,
+    "Poor": 2687,
+    "Very Poor": 7748,
+    "Severe": 23855
+  },
+  "mismatch_vs_raw_AQI_Bucket": 30339
+}
