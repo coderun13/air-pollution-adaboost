@@ -20,9 +20,7 @@ interface NavbarProps {
 }
 
 const NAV_LINKS = [
-  { label: "Home", to: "/" },
   { label: "Dashboard", to: "/dashboard" },
-  { label: "Analytics & Forecast", to: "/analytics" },
   { label: "Compare", to: "/compare" },
   { label: "ML Predictor", to: "/predict" },
   { label: "India Map", to: "/map" },

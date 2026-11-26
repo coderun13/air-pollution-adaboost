@@ -2,11 +2,9 @@ import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { MapPin, Sparkles, ArrowRight } from "lucide-react";
 import type { LiveStation, ModelBenchmark } from "../services/api";
-import { adaptLiveStationToContext, buildForecastSeries } from "../utils/stationAdapter";
-import { AlertBanner } from "../components/alerts/AlertBanner";
+import { adaptLiveStationToContext } from "../utils/stationAdapter";
 import { HealthAdvisoryCard } from "../components/alerts/HealthAdvisoryCard";
 import { PollutantGrid } from "../components/charts/PollutantGrid";
-import { ForecastComparisonChart } from "../components/charts/ForecastComparisonChart";
 import { AqiSpectrumBar } from "../components/charts/AqiSpectrumBar";
 
 interface DashboardPageProps {
@@ -21,17 +19,11 @@ export function DashboardPage({
   stations,
   selectedStation,
   onSelectStation,
-  models,
   onAskAI,
 }: DashboardPageProps) {
   const stationContext = useMemo(
     () => adaptLiveStationToContext(selectedStation),
     [selectedStation]
-  );
-
-  const forecastSeries = useMemo(
-    () => buildForecastSeries(stationContext.aqi, models),
-    [stationContext.aqi, models]
   );
 
   const dominantPollutant = useMemo(() => {
@@ -52,7 +44,7 @@ export function DashboardPage({
           <h1 className="mt-1 font-display text-2xl font-bold text-text-primary sm:text-3xl">
             {stationContext.city} Air Quality Dashboard
           </h1>
-          <p className="mt-1 text-xs sm:text-sm text-text-secondary">
+          <p className="mt-1 text-xs text-text-secondary sm:text-sm">
             Station: <strong className="text-text-primary">{stationContext.stationName}</strong> ·
             Category: <strong className="text-primary-dark">{stationContext.category}</strong>
           </p>
@@ -84,57 +76,55 @@ export function DashboardPage({
       {/* AQI Spectrum */}
       <AqiSpectrumBar aqi={stationContext.aqi} category={stationContext.category} />
 
-      {/* Active Alerts */}
-      {/* <AlertBanner
-        alerts={stationContext.activeAlerts}
-        onAskAI={(prompt) => onAskAI(prompt)}
-      /> */}
-
       {/* Pollutant Breakdown */}
       <PollutantGrid
         pollutants={stationContext.pollutants}
         stationName={`${stationContext.stationName}, ${stationContext.city}`}
       />
 
-      {/* Forecast + Health Advisory */}
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-        {/* <div className="lg:col-span-2">
-          <ForecastComparisonChart
-            data={forecastSeries}
-            city={stationContext.city}
-            models={models}
+      {/* Health Advisory + Quick AI Summary */}
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
+        <div className="lg:col-span-7">
+          <HealthAdvisoryCard
+            aqi={stationContext.aqi}
+            category={stationContext.category}
+            dominantPollutant={dominantPollutant}
           />
-        </div> */}
-        <HealthAdvisoryCard
-          aqi={stationContext.aqi}
-          category={stationContext.category}
-          dominantPollutant={dominantPollutant}
-        />
-      </div>
-
-      {/* Quick AI Prompt Bar */}
-      <div className="flex flex-col items-start justify-between gap-4 rounded-2xl border border-pink-200 bg-gradient-to-r from-pink-50 via-white to-rose-50 p-5 sm:flex-row sm:items-center">
-        <div>
-          <h2 className="font-display text-base font-bold text-text-primary">
-            Want a quick summary of {stationContext.city}?
-          </h2>
-          <p className="text-xs text-text-secondary">
-            Open the AIRWATCH AI assistant for plain-language insights on {dominantPollutant} and
-            outdoor precautions.
-          </p>
         </div>
-        <button
-          type="button"
-          onClick={() =>
-            onAskAI(
-              `Summarize air quality, ${dominantPollutant}, and health advice for ${stationContext.city}.`
-            )
-          }
-          className="btn-secondary shrink-0"
-        >
-          <Sparkles className="h-4 w-4 text-primary" />
-          Ask AIRWATCH AI
-        </button>
+
+        <div className="surface-card flex flex-col justify-between border-pink-200 bg-gradient-to-br from-[#FFF5F9] via-white to-[#FAF8F6] p-6 lg:col-span-5">
+          <div className="space-y-3">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-pink-200 bg-white px-3 py-1 text-xs font-bold text-primary-dark">
+              <Sparkles className="h-3.5 w-3.5 text-primary" />
+              AIRWATCH AI Summary
+            </span>
+            <h2 className="font-display text-lg font-bold text-text-primary">
+              Want a quick summary of {stationContext.city}?
+            </h2>
+            <p className="text-xs leading-relaxed text-text-secondary sm:text-sm">
+              Ask AIRWATCH AI to explain why{" "}
+              <strong className="text-text-primary">{dominantPollutant}</strong> is driving the{" "}
+              <strong className="text-primary-dark">{stationContext.category}</strong> reading at{" "}
+              <strong className="text-text-primary">{stationContext.stationName}</strong> and what
+              precautions matter most today.
+            </p>
+          </div>
+
+          <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-border pt-4">
+            <button
+              type="button"
+              onClick={() =>
+                onAskAI(
+                  `Summarize air quality, ${dominantPollutant}, and health advice for ${stationContext.city}.`
+                )
+              }
+              className="btn-primary text-xs sm:text-sm"
+            >
+              <Sparkles className="h-4 w-4" />
+              Ask AIRWATCH AI
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

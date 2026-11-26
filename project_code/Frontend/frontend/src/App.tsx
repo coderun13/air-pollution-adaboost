@@ -12,19 +12,12 @@ import { Navbar } from "./components/Navbar";
 import { HeroSection } from "./components/HeroSection";
 import { StationsSection } from "./components/StationsSection";
 import { PredictorSection } from "./components/PredictorSection";
-// import { ModelInsights } from "./components/ModelInsights";
 import { Footer } from "./components/footer";
 import { DashboardPage } from "./pages/DashboardPage";
 import { AboutPage } from "./pages/AboutPage";
 import { ContactPage } from "./pages/ContactPage";
 import { MapPage } from "./pages/MapPage";
 import { ComparePage } from "./pages/ComparePage";
-
-// import { AlertBanner } from "./components/alerts/AlertBanner";
-import { HealthAdvisoryCard } from "./components/alerts/HealthAdvisoryCard";
-import { PollutantGrid } from "./components/charts/PollutantGrid";
-// import { ForecastComparisonChart } from "./components/charts/ForecastComparisonChart";
-import { AqiSpectrumBar } from "./components/charts/AqiSpectrumBar";
 import { AirAssistantDrawer } from "./components/assistant/AirAssistantDrawer";
 import {
   adaptLiveStationToContext,
@@ -161,7 +154,7 @@ export function App() {
                   {/* 4-Card Navigation Grid */}
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
                     <Link
-                      to="/analytics"
+                      to="/dashboard"
                       className="surface-card group p-5 hover:border-pink-300"
                     >
                       <BarChart3 className="mb-3 h-6 w-6 text-pink-600" />
@@ -237,63 +230,6 @@ export function App() {
             }
           />
 
-          {/* PAGE 2: Pollutants, Forecast & Health Advisory */}
-          <Route
-            path="/analytics"
-            element={
-              <div className="mx-auto max-w-7xl space-y-8 px-4 py-10 sm:px-6 lg:px-8">
-                <div className="border-b border-border pb-5">
-                  <span className="text-xs font-bold uppercase tracking-wider text-primary-dark">
-                    Deep-Dive Telemetry
-                  </span>
-                  <h1 className="mt-1 text-2xl sm:text-3xl font-bold text-text-primary">
-                    Pollutant Analytics, Forecast &amp; Health Advisory
-                  </h1>
-                  <p className="mt-1 text-sm text-text-secondary">
-                    Showing live parameter breakdown for{" "}
-                    <strong className="text-text-primary">
-                      {stationContext.stationName}, {stationContext.city}
-                    </strong>{" "}
-                    (switch stations anytime in the dashboard).
-                  </p>
-                </div>
-
-                <AqiSpectrumBar
-                  aqi={stationContext.aqi}
-                  category={stationContext.category}
-                />
-
-                {/* <AlertBanner
-                  alerts={stationContext.activeAlerts}
-                  onAskAI={(prompt) => {
-                    setAiPrompt(prompt);
-                    setAssistantOpen(true);
-                  }}
-                /> */}
-
-                <PollutantGrid
-                  pollutants={stationContext.pollutants}
-                  stationName={`${stationContext.stationName}, ${stationContext.city}`}
-                />
-
-                <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-                  <div className="lg:col-span-2">
-                    {/* <ForecastComparisonChart
-                      data={forecastSeries}
-                      city={stationContext.city}
-                      models={models}
-                    /> */}
-                  </div>
-                  <HealthAdvisoryCard
-                    aqi={stationContext.aqi}
-                    category={stationContext.category}
-                    dominantPollutant={dominantPollutant}
-                  />
-                </div>
-              </div>
-            }
-          />
-
           {/* PAGE 3: Station Comparison */}
           <Route
             path="/compare"
@@ -314,23 +250,15 @@ export function App() {
             element={
               <div className="mx-auto max-w-7xl space-y-12 px-4 py-10 sm:px-6 lg:px-8">
                 <div className="border-b border-border pb-5">
-                  <span className="text-xs font-bold uppercase tracking-wider text-primary-dark">
-                    Machine Learning Pipeline
-                  </span>
                   <h1 className="mt-1 text-2xl sm:text-3xl font-bold text-text-primary">
                     AQI Classifier Simulator &amp; Model Evaluation
                   </h1>
                   <p className="mt-1 text-sm text-text-secondary">
-                    Test custom pollutant scenarios and inspect AdaBoost vs. Decision Tree feature weights.
+                    Test custom pollutant scenarios.
                   </p>
                 </div>
 
                 <PredictorSection externalValues={predictorPreset} />
-
-                {/* <ModelInsights
-                  models={models}
-                  featureImportances={featureImportances}
-                /> */}
               </div>
             }
           />

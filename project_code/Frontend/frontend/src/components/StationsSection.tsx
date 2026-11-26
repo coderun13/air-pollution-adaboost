@@ -105,15 +105,6 @@ export function StationsSection({
         </div>
 
         <div className="flex flex-wrap items-center gap-3">
-          {/* <span
-            className={`rounded-full border px-3 py-1 text-xs font-medium ${
-              liveApi
-                ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-400"
-                : "border-amber-500/30 bg-amber-500/10 text-amber-300"
-            }`}
-          >
-            {liveApi ? "Live FastAPI /stations/live" : "Offline Snapshot Data"}
-          </span> */}
 
           <div className="relative">
             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-text-muted" />

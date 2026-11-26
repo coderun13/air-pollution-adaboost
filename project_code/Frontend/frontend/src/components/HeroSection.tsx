@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowRight, Sparkles, ShieldAlert, Layers, MapPin } from "lucide-react";
+import { ArrowRight,ShieldAlert, Layers, MapPin } from "lucide-react";
 import type { LiveStation } from "../services/api";
 import { adaptLiveStationToContext } from "../utils/stationAdapter";
 
@@ -59,7 +59,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             </p>
 
             <div className="mt-7 flex flex-wrap items-center gap-3.5">
-              <a href="#ml-predictor" className="btn-primary">
+              <a href="/predict" className="btn-primary">
                 Launch ML Predictor
                 <ArrowRight className="h-4 w-4" />
               </a>

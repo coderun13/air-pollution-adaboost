@@ -21,21 +21,21 @@ interface ComparePageProps {
 const CORE_IDS = ["PM2.5", "PM10", "NO2", "SO2", "CO", "O3"] as const;
 
 const CATEGORY_BADGE: Record<AQICategory, string> = {
-  Good: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30",
-  Satisfactory: "bg-lime-500/15 text-lime-300 border-lime-500/30",
-  Moderate: "bg-amber-500/15 text-amber-300 border-amber-500/30",
-  Poor: "bg-orange-500/15 text-orange-300 border-orange-500/30",
-  "Very Poor": "bg-rose-500/15 text-rose-300 border-rose-500/30",
-  Severe: "bg-red-600/20 text-red-300 border-red-500/40",
+  Good: "bg-emerald-50 text-emerald-700 border-emerald-200",
+  Satisfactory: "bg-teal-50 text-teal-700 border-teal-200",
+  Moderate: "bg-amber-50 text-amber-800 border-amber-200",
+  Poor: "bg-orange-50 text-orange-800 border-orange-200",
+  "Very Poor": "bg-rose-50 text-rose-700 border-rose-200",
+  Severe: "bg-purple-50 text-purple-800 border-purple-200",
 };
 
 const DONUT_COLORS: Record<string, string> = {
-  "PM2.5": "#f43f5e", // rose
-  PM10: "#fb923c", // orange
-  NO2: "#818cf8", // indigo
-  SO2: "#38bdf8", // sky
-  CO: "#facc15", // yellow
-  O3: "#34d399", // emerald
+  "PM2.5": "#db2777", // pink-600
+  PM10: "#f97316", // orange-500
+  NO2: "#0d9488", // teal-600
+  SO2: "#0284c7", // sky-600
+  CO: "#eab308", // yellow-500
+  O3: "#16a34a", // green-600
 };
 
 export const ComparePage: React.FC<ComparePageProps> = ({ stations, onAskAI }) => {
@@ -103,7 +103,6 @@ export const ComparePage: React.FC<ComparePageProps> = ({ stations, onAskAI }) =
         else higher = "equal";
       }
 
-      // Compute 24h min/max range (candle wick bounds) from history24h
       const histA = pA?.history24h?.length ? pA.history24h : valA !== null ? [valA] : [];
       const histB = pB?.history24h?.length ? pB.history24h : valB !== null ? [valB] : [];
 
@@ -128,10 +127,10 @@ export const ComparePage: React.FC<ComparePageProps> = ({ stations, onAskAI }) =
       {/* Header */}
       <div className="flex flex-wrap items-end justify-between gap-4 border-b border-border pb-5">
         <div>
-          <span className="text-xs font-semibold uppercase tracking-wider text-indigo-400">
+          <span className="text-xs font-bold uppercase tracking-wider text-primary-dark">
             Spatial &amp; Multi-Pollutant Benchmark
           </span>
-          <h1 className="mt-1 text-2xl sm:text-3xl font-bold text-white">
+          <h1 className="mt-1 font-display text-2xl sm:text-3xl font-bold text-text-primary">
             City &amp; Station Comparison
           </h1>
           <p className="mt-1 text-sm text-text-secondary">
@@ -141,28 +140,29 @@ export const ComparePage: React.FC<ComparePageProps> = ({ stations, onAskAI }) =
 
         {onAskAI && (
           <button
+            type="button"
             onClick={() =>
               onAskAI(
                 `Compare ${ctxA.city} (${ctxA.stationName}, AQI ${ctxA.aqi} - ${ctxA.category}) vs ${ctxB.city} (${ctxB.stationName}, AQI ${ctxB.aqi} - ${ctxB.category}). Explain which city has worse readings and why.`
               )
             }
-            className="inline-flex items-center gap-2 rounded-xl border border-indigo-500/40 bg-indigo-500/15 px-4 py-2 text-xs font-medium text-indigo-300 transition hover:bg-indigo-500/25"
+            className="btn-secondary text-xs"
           >
-            <Sparkles className="h-4 w-4" /> Ask AI to Compare Both
+            <Sparkles className="h-4 w-4 text-primary" /> Ask AI to Compare Both
           </button>
         )}
       </div>
 
       {/* Dual Station Selector Bar */}
-      <div className="grid grid-cols-1 items-center gap-3 rounded-2xl border border-border bg-surface p-4 md:grid-cols-[1fr_auto_1fr]">
+      <div className="surface-card grid grid-cols-1 items-center gap-3 p-4 md:grid-cols-[1fr_auto_1fr]">
         <div>
-          <label className="mb-1.5 flex items-center gap-1.5 text-xs font-medium text-indigo-300">
-            <MapPin className="h-3.5 w-3.5" /> Location A
+          <label className="mb-1.5 flex items-center gap-1.5 text-xs font-semibold text-primary-dark">
+            <MapPin className="h-3.5 w-3.5 text-primary" /> Location A
           </label>
           <select
             value={stationA?.station ?? ""}
             onChange={(e) => setStationAName(e.target.value)}
-            className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3.5 py-2.5 text-sm text-white focus:border-indigo-500 focus:outline-none"
+            className="field-input bg-[#FAF8F6]"
           >
             {stations.map((st, i) => (
               <option key={`a-${st.station}-${i}`} value={st.station ?? ""}>
@@ -177,20 +177,20 @@ export const ComparePage: React.FC<ComparePageProps> = ({ stations, onAskAI }) =
             type="button"
             onClick={handleSwap}
             title="Swap stations"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-700 bg-slate-900 text-slate-300 transition hover:border-indigo-500 hover:text-white"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border-light bg-[#FFF5F9] text-primary-dark transition hover:bg-pink-100"
           >
             <ArrowLeftRight className="h-4 w-4" />
           </button>
         </div>
 
         <div>
-          <label className="mb-1.5 flex items-center gap-1.5 text-xs font-medium text-emerald-300">
-            <MapPin className="h-3.5 w-3.5" /> Location B
+          <label className="mb-1.5 flex items-center gap-1.5 text-xs font-semibold text-teal-700">
+            <MapPin className="h-3.5 w-3.5 text-teal-600" /> Location B
           </label>
           <select
             value={stationB?.station ?? ""}
             onChange={(e) => setStationBName(e.target.value)}
-            className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3.5 py-2.5 text-sm text-white focus:border-emerald-500 focus:outline-none"
+            className="field-input bg-[#FAF8F6]"
           >
             {stations.map((st, i) => (
               <option key={`b-${st.station}-${i}`} value={st.station ?? ""}>
@@ -202,17 +202,19 @@ export const ComparePage: React.FC<ComparePageProps> = ({ stations, onAskAI }) =
       </div>
 
       {/* Verdict Banner */}
-      <div className="rounded-2xl border border-amber-500/30 bg-amber-950/20 p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col justify-between gap-4 rounded-2xl border border-pink-200 bg-gradient-to-r from-[#FFF5F9] via-white to-[#FAF8F6] p-5 shadow-2xs sm:flex-row sm:items-center">
         <div className="flex items-start gap-3">
-          <Scale className="h-6 w-6 text-amber-400 shrink-0 mt-0.5" />
+          <Scale className="mt-0.5 h-6 w-6 shrink-0 text-primary" />
           <div>
-            <div className="flex items-center gap-2">
-              <h2 className="text-base font-bold text-white">{verdict.worseLabel}</h2>
-              <span className="rounded-full bg-amber-500/20 px-2.5 py-0.5 text-[11px] font-semibold text-amber-300">
+            <div className="flex flex-wrap items-center gap-2">
+              <h2 className="font-display text-base font-bold text-text-primary">
+                {verdict.worseLabel}
+              </h2>
+              <span className="rounded-full border border-pink-200 bg-pink-50 px-2.5 py-0.5 text-[11px] font-semibold text-primary-dark">
                 Comparison Verdict
               </span>
             </div>
-            <p className="mt-1 text-sm text-slate-300">{verdict.summary}</p>
+            <p className="mt-1 text-sm text-text-secondary">{verdict.summary}</p>
           </div>
         </div>
       </div>
@@ -220,24 +222,26 @@ export const ComparePage: React.FC<ComparePageProps> = ({ stations, onAskAI }) =
       {/* Side-by-Side Overview Cards */}
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         {[
-          { ctx: ctxA, side: "A" as const, accent: "border-indigo-500/40" },
-          { ctx: ctxB, side: "B" as const, accent: "border-emerald-500/40" },
+          { ctx: ctxA, side: "A" as const, accent: "border-pink-200" },
+          { ctx: ctxB, side: "B" as const, accent: "border-teal-200" },
         ].map(({ ctx, side, accent }) => {
           const isWorse = verdict.worseSide === side;
           return (
             <div
               key={side}
-              className={`rounded-2xl border ${
-                isWorse ? "border-rose-500/50" : accent
-              } bg-slate-900/75 p-6 space-y-4`}
+              className={`surface-card space-y-4 p-6 ${
+                isWorse ? "border-rose-300 ring-1 ring-rose-200" : accent
+              }`}
             >
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  <span className="text-xs font-bold uppercase tracking-wider text-text-muted">
                     Location {side}
                   </span>
-                  <h3 className="text-xl font-bold text-white">{ctx.city}</h3>
-                  <p className="text-xs text-slate-400">{ctx.stationName}</p>
+                  <h3 className="font-display text-xl font-bold text-text-primary">
+                    {ctx.city}
+                  </h3>
+                  <p className="text-xs text-text-secondary">{ctx.stationName}</p>
                 </div>
 
                 <span
@@ -249,18 +253,20 @@ export const ComparePage: React.FC<ComparePageProps> = ({ stations, onAskAI }) =
                 </span>
               </div>
 
-              <div className="flex items-baseline justify-between border-t border-slate-800 pt-4">
+              <div className="flex items-baseline justify-between border-t border-border pt-4">
                 <div>
-                  <span className="text-xs text-slate-400 block">Estimated CPCB AQI</span>
-                  <span className="text-3xl font-extrabold text-white">{ctx.aqi}</span>
+                  <span className="block text-xs text-text-muted">Estimated CPCB AQI</span>
+                  <span className="font-display text-3xl font-extrabold text-text-primary">
+                    {ctx.aqi}
+                  </span>
                 </div>
 
                 {verdict.worseSide !== "tie" && (
                   <span
-                    className={`inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-medium ${
+                    className={`inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1 text-xs font-semibold ${
                       isWorse
-                        ? "bg-rose-500/15 text-rose-300"
-                        : "bg-emerald-500/15 text-emerald-300"
+                        ? "border-rose-200 bg-rose-50 text-rose-700"
+                        : "border-emerald-200 bg-emerald-50 text-emerald-700"
                     }`}
                   >
                     {isWorse ? (
@@ -280,61 +286,60 @@ export const ComparePage: React.FC<ComparePageProps> = ({ stations, onAskAI }) =
         })}
       </div>
 
-      {/* NEW VISUAL GRAPHS: 6-Axis Radar Fingerprint + Hazard Share Donut Charts */}
+      {/* 6-Axis Radar Fingerprint + Hazard Share Donut Charts */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
         {/* Left 6 Cols: Multi-Pollutant Radar Chart */}
-        <div className="lg:col-span-6 rounded-2xl border border-slate-800 bg-slate-900/70 p-6 flex flex-col justify-between">
+        <div className="surface-card flex flex-col justify-between p-6 lg:col-span-6">
           <div>
-            <div className="flex items-center justify-between gap-2 mb-1">
-              <h3 className="text-base font-semibold text-white flex items-center gap-2">
-                <Radar className="h-4 w-4 text-indigo-400" />
+            <div className="mb-1 flex items-center justify-between gap-2">
+              <h3 className="flex items-center gap-2 font-display text-base font-bold text-text-primary">
+                <Radar className="h-4 w-4 text-primary" />
                 Pollutant Fingerprint (Radar)
               </h3>
-              <span className="text-[11px] text-slate-400">Normalized to % of Safe Limit</span>
+              <span className="text-[11px] text-text-muted">Normalized to % of Safe Limit</span>
             </div>
-            <p className="text-xs text-slate-400 mb-4">
+            <p className="mb-4 text-xs text-text-secondary">
               Dashed inner ring = 100% CPCB threshold. Larger polygon area = heavier multi-pollutant load.
             </p>
           </div>
 
           <PollutantRadarChart ctxA={ctxA} ctxB={ctxB} />
 
-          <div className="mt-4 flex items-center justify-center gap-6 text-xs pt-3 border-t border-slate-800">
-            <span className="flex items-center gap-2 text-slate-200 font-medium">
-              <span className="h-3 w-3 rounded-sm bg-indigo-500/50 border border-indigo-400" />
+          <div className="mt-4 flex items-center justify-center gap-6 border-t border-border pt-3 text-xs">
+            <span className="flex items-center gap-2 font-semibold text-text-primary">
+              <span className="h-3 w-3 rounded-sm border border-pink-600 bg-pink-500/35" />
               {ctxA.city} (A)
             </span>
-            <span className="flex items-center gap-2 text-slate-200 font-medium">
-              <span className="h-3 w-3 rounded-sm bg-emerald-500/50 border border-emerald-400" />
+            <span className="flex items-center gap-2 font-semibold text-text-primary">
+              <span className="h-3 w-3 rounded-sm border border-teal-600 bg-teal-500/35" />
               {ctxB.city} (B)
             </span>
           </div>
         </div>
 
-        {/* Right 6 Cols: Dual Donut Pie Charts (Hazard Contribution Share) */}
-        <div className="lg:col-span-6 rounded-2xl border border-slate-800 bg-slate-900/70 p-6 flex flex-col justify-between">
+        {/* Right 6 Cols: Dual Donut Pie Charts */}
+        <div className="surface-card flex flex-col justify-between p-6 lg:col-span-6">
           <div>
-            <div className="flex items-center justify-between gap-2 mb-1">
-              <h3 className="text-base font-semibold text-white flex items-center gap-2">
-                <PieChart className="h-4 w-4 text-rose-400" />
+            <div className="mb-1 flex items-center justify-between gap-2">
+              <h3 className="flex items-center gap-2 font-display text-base font-bold text-text-primary">
+                <PieChart className="h-4 w-4 text-primary" />
                 Pollution Composition (Donut Share)
               </h3>
-              <span className="text-[11px] text-slate-400">Weighted by Safe-Limit Ratio</span>
+              <span className="text-[11px] text-text-muted">Weighted by Safe-Limit Ratio</span>
             </div>
-            <p className="text-xs text-slate-400 mb-4">
+            <p className="mb-4 text-xs text-text-secondary">
               Shows which pollutant contributes the largest share of health risk in each city.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 my-auto">
-            <HazardDonutCard ctx={ctxA} accentText="text-indigo-300" />
-            <HazardDonutCard ctx={ctxB} accentText="text-emerald-300" />
+          <div className="my-auto grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <HazardDonutCard ctx={ctxA} accentText="text-primary-dark" />
+            <HazardDonutCard ctx={ctxB} accentText="text-teal-700" />
           </div>
 
-          {/* Shared Color Legend */}
-          <div className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-[11px] pt-3 border-t border-slate-800">
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 border-t border-border pt-3 text-[11px]">
             {CORE_IDS.map((id) => (
-              <span key={id} className="flex items-center gap-1.5 text-slate-300">
+              <span key={id} className="flex items-center gap-1.5 font-medium text-text-secondary">
                 <span
                   className="h-2.5 w-2.5 rounded-full"
                   style={{ backgroundColor: DONUT_COLORS[id] }}
@@ -347,19 +352,19 @@ export const ComparePage: React.FC<ComparePageProps> = ({ stations, onAskAI }) =
       </div>
 
       {/* Head-to-Head Table with 24h Range Candlestick Bars */}
-      <div className="overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/70">
-        <div className="border-b border-slate-800 px-6 py-4 flex flex-wrap items-center justify-between gap-2">
+      <div className="surface-card overflow-hidden">
+        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border bg-[#FAF8F6] px-6 py-4">
           <div>
-            <h3 className="text-base font-semibold text-white">
+            <h3 className="font-display text-base font-bold text-text-primary">
               Core Pollutant Head-to-Head &amp; 24h Range (Candlestick)
             </h3>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-text-secondary">
               Thin wick shows 24h min–max fluctuation; bright marker shows current reading.
             </p>
           </div>
         </div>
 
-        <div className="divide-y divide-slate-800/80">
+        <div className="divide-y divide-border">
           {rows.map((row) => {
             const maxVal = Math.max(
               row.maxA ?? row.valA ?? 0,
@@ -382,41 +387,39 @@ export const ComparePage: React.FC<ComparePageProps> = ({ stations, onAskAI }) =
                 {/* Pollutant Label */}
                 <div className="md:col-span-3">
                   <div className="flex items-center gap-2">
-                    <span className="font-bold text-white">{row.id}</span>
-                    <span className="text-[11px] text-slate-500">
+                    <span className="font-bold text-text-primary">{row.id}</span>
+                    <span className="text-[11px] text-text-muted">
                       (Safe: {row.safeLimit} {row.unit})
                     </span>
                   </div>
-                  <p className="text-xs text-slate-400">{row.name}</p>
+                  <p className="text-xs text-text-secondary">{row.name}</p>
                 </div>
 
                 {/* Location A Range Candlestick */}
-                <div className="md:col-span-3 space-y-1.5">
+                <div className="space-y-1.5 md:col-span-3">
                   <div className="flex justify-between text-xs">
-                    <span className="text-slate-400">{ctxA.city}</span>
+                    <span className="text-text-secondary">{ctxA.city}</span>
                     <span
                       className={`font-semibold ${
-                        row.higher === "A" ? "text-rose-400" : "text-slate-200"
+                        row.higher === "A" ? "text-rose-600" : "text-text-primary"
                       }`}
                     >
                       {row.valA !== null ? `${row.valA} ${row.unit}` : "Not reported"}
                     </span>
                   </div>
-                  <div className="relative h-3 w-full rounded-full bg-slate-800/90 flex items-center">
+                  <div className="relative flex h-3 w-full items-center rounded-full bg-[#F4F1EE]">
                     {row.valA !== null && (
                       <>
-                        {/* 24h Min-Max Wick */}
                         <div
-                          className="absolute h-1 rounded-full bg-indigo-400/50"
+                          className="absolute h-1 rounded-full bg-pink-400/60"
                           style={{
                             left: `${minPctA}%`,
                             width: `${Math.max(maxPctA - minPctA, 3)}%`,
                           }}
                         />
-                        {/* Current Candle Marker */}
                         <div
-                          className={`absolute h-3 w-2.5 -translate-x-1/2 rounded-xs shadow ${
-                            row.higher === "A" ? "bg-rose-500" : "bg-indigo-400"
+                          className={`absolute h-3 w-2.5 -translate-x-1/2 rounded-xs shadow-2xs ${
+                            row.higher === "A" ? "bg-rose-600" : "bg-pink-600"
                           }`}
                           style={{ left: `${pctA}%` }}
                         />
@@ -426,30 +429,30 @@ export const ComparePage: React.FC<ComparePageProps> = ({ stations, onAskAI }) =
                 </div>
 
                 {/* Location B Range Candlestick */}
-                <div className="md:col-span-3 space-y-1.5">
+                <div className="space-y-1.5 md:col-span-3">
                   <div className="flex justify-between text-xs">
-                    <span className="text-slate-400">{ctxB.city}</span>
+                    <span className="text-text-secondary">{ctxB.city}</span>
                     <span
                       className={`font-semibold ${
-                        row.higher === "B" ? "text-rose-400" : "text-slate-200"
+                        row.higher === "B" ? "text-rose-600" : "text-text-primary"
                       }`}
                     >
                       {row.valB !== null ? `${row.valB} ${row.unit}` : "Not reported"}
                     </span>
                   </div>
-                  <div className="relative h-3 w-full rounded-full bg-slate-800/90 flex items-center">
+                  <div className="relative flex h-3 w-full items-center rounded-full bg-[#F4F1EE]">
                     {row.valB !== null && (
                       <>
                         <div
-                          className="absolute h-1 rounded-full bg-emerald-400/50"
+                          className="absolute h-1 rounded-full bg-teal-400/60"
                           style={{
                             left: `${minPctB}%`,
                             width: `${Math.max(maxPctB - minPctB, 3)}%`,
                           }}
                         />
                         <div
-                          className={`absolute h-3 w-2.5 -translate-x-1/2 rounded-xs shadow ${
-                            row.higher === "B" ? "bg-rose-500" : "bg-emerald-400"
+                          className={`absolute h-3 w-2.5 -translate-x-1/2 rounded-xs shadow-2xs ${
+                            row.higher === "B" ? "bg-rose-600" : "bg-teal-600"
                           }`}
                           style={{ left: `${pctB}%` }}
                         />
@@ -459,17 +462,17 @@ export const ComparePage: React.FC<ComparePageProps> = ({ stations, onAskAI }) =
                 </div>
 
                 {/* Delta Badge */}
-                <div className="md:col-span-3 flex md:justify-end">
+                <div className="flex md:col-span-3 md:justify-end">
                   {row.higher === "na" ? (
-                    <span className="rounded-lg bg-slate-800 px-2.5 py-1 text-[11px] text-slate-400">
+                    <span className="rounded-lg bg-[#F4F1EE] px-2.5 py-1 text-[11px] text-text-muted">
                       Sensor data incomplete
                     </span>
                   ) : row.higher === "equal" ? (
-                    <span className="rounded-lg bg-slate-800 px-2.5 py-1 text-[11px] text-slate-300">
+                    <span className="rounded-lg bg-[#F4F1EE] px-2.5 py-1 text-[11px] text-text-secondary">
                       Equal levels
                     </span>
                   ) : (
-                    <span className="rounded-lg border border-rose-500/30 bg-rose-500/10 px-2.5 py-1 text-[11px] font-medium text-rose-300">
+                    <span className="rounded-lg border border-rose-200 bg-rose-50 px-2.5 py-1 text-[11px] font-semibold text-rose-700">
                       Higher in {row.higher === "A" ? ctxA.city : ctxB.city} (+
                       {Math.abs((row.valA ?? 0) - (row.valB ?? 0)).toFixed(1)})
                     </span>
@@ -499,7 +502,6 @@ const PollutantRadarChart: React.FC<{
     CORE_IDS.map((id) => {
       const p = ctx.pollutants.find((item) => item.id === id);
       if (!p || p.value === null) return 0;
-      // Cap at 200% of safe limit so extreme spikes don't clip outside SVG
       return Math.min(p.value / p.safeLimit, 2.0);
     });
 
@@ -517,8 +519,7 @@ const PollutantRadarChart: React.FC<{
 
   return (
     <div className="flex justify-center">
-      <svg viewBox={`0 0 ${size} ${size}`} className="w-full max-w-[280px] h-auto">
-        {/* Concentric rings: 50%, 100% (Safe Limit), 150%, 200% */}
+      <svg viewBox={`0 0 ${size} ${size}`} className="h-auto w-full max-w-[280px]">
         {[0.5, 1.0, 1.5, 2.0].map((level) => (
           <circle
             key={level}
@@ -526,13 +527,12 @@ const PollutantRadarChart: React.FC<{
             cy={cy}
             r={(level / 2.0) * maxRadius}
             fill="none"
-            stroke={level === 1.0 ? "#f59e0b" : "#1e293b"}
-            strokeWidth={level === 1.0 ? "1.25" : "1"}
+            stroke={level === 1.0 ? "#db2777" : "#e5ddd7"}
+            strokeWidth={level === 1.0 ? "1.35" : "1"}
             strokeDasharray={level === 1.0 ? "4 3" : undefined}
           />
         ))}
 
-        {/* Spokes & Axis Labels */}
         {CORE_IDS.map((id, idx) => {
           const angle = (Math.PI * 2 * idx) / CORE_IDS.length - Math.PI / 2;
           const x2 = cx + maxRadius * Math.cos(angle);
@@ -542,12 +542,12 @@ const PollutantRadarChart: React.FC<{
 
           return (
             <g key={id}>
-              <line x1={cx} y1={cy} x2={x2} y2={y2} stroke="#1e293b" strokeWidth="1" />
+              <line x1={cx} y1={cy} x2={x2} y2={y2} stroke="#e5ddd7" strokeWidth="1" />
               <text
                 x={lx}
                 y={ly + 3}
                 textAnchor="middle"
-                className="fill-slate-300 text-[10px] font-semibold"
+                className="fill-zinc-700 text-[10px] font-bold"
               >
                 {id}
               </text>
@@ -555,19 +555,17 @@ const PollutantRadarChart: React.FC<{
           );
         })}
 
-        {/* Location A Polygon */}
         <polygon
           points={polyA}
-          fill="rgba(99, 102, 241, 0.28)"
-          stroke="#818cf8"
+          fill="rgba(219, 39, 119, 0.22)"
+          stroke="#db2777"
           strokeWidth="2"
         />
 
-        {/* Location B Polygon */}
         <polygon
           points={polyB}
-          fill="rgba(16, 185, 129, 0.25)"
-          stroke="#34d399"
+          fill="rgba(13, 148, 136, 0.22)"
+          stroke="#0d9488"
           strokeWidth="2"
         />
       </svg>
@@ -604,8 +602,8 @@ const HazardDonutCard: React.FC<{
   const circumference = 2 * Math.PI * radius;
 
   return (
-    <div className="flex flex-col items-center rounded-xl border border-slate-800/80 bg-slate-950/50 p-4">
-      <span className={`text-xs font-semibold mb-2 ${accentText}`}>{ctx.city}</span>
+    <div className="flex flex-col items-center rounded-xl border border-border bg-[#FAF8F6] p-4">
+      <span className={`mb-2 text-xs font-bold ${accentText}`}>{ctx.city}</span>
 
       <div className="relative h-28 w-28">
         <svg viewBox="0 0 100 100" className="h-full w-full -rotate-90">
@@ -614,7 +612,7 @@ const HazardDonutCard: React.FC<{
             cy="50"
             r={radius}
             fill="transparent"
-            stroke="#1e293b"
+            stroke="#e8e1dc"
             strokeWidth="14"
           />
           {slices.map((slice) => {
@@ -636,14 +634,13 @@ const HazardDonutCard: React.FC<{
           })}
         </svg>
 
-        {/* Center Top Driver Label */}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-          <span className="text-[10px] text-slate-400">Top Share</span>
-          <span className="text-xs font-bold text-white">
+          <span className="text-[10px] text-text-muted">Top Share</span>
+          <span className="text-xs font-bold text-text-primary">
             {topSlice ? `${topSlice.id}` : "N/A"}
           </span>
           {topSlice && (
-            <span className="text-[10px] text-slate-400">
+            <span className="text-[10px] font-semibold text-primary-dark">
               {Math.round(topSlice.pct)}%
             </span>
           )}

@@ -22,7 +22,7 @@ export function Footer() {
             </p>
             <div className="inline-flex items-center gap-1.5 text-[11px] text-text-secondary">
               <ShieldCheck className="h-3.5 w-3.5 text-emerald-500" />
-              <span>Transparent sensor reporting • Informational guidance only</span>
+              <span>Transparent sensor reporting </span>
             </div>
           </div>
 
@@ -33,7 +33,7 @@ export function Footer() {
             </h4>
             <ul className="space-y-2 text-xs text-text-secondary">
               <li>
-                <Link to="/analytics" className="hover:text-primary transition">
+                <Link to="/dashboard" className="hover:text-primary transition">
                   Pollutant Analytics &amp; Health Advisory
                 </Link>
               </li>
@@ -44,7 +44,7 @@ export function Footer() {
               </li>
               <li>
                 <Link to="/predict" className="hover:text-primary transition">
-                  ML Classifier &amp; Model Benchmarks
+                  ML Classifier
                 </Link>
               </li>
               <li>
@@ -77,7 +77,6 @@ export function Footer() {
 
         <div className="mt-8 flex flex-col items-center justify-between gap-2 border-t border-border pt-6 text-[11px] text-text-secondary sm:flex-row">
           <span>© {new Date().getFullYear()} AIRWATCH AI. All rights reserved.</span>
-          <span>Built with FastAPI, React, TypeScript &amp; Explainable ML</span>
         </div>
       </div>
     </footer>
